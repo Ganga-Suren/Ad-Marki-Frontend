@@ -1,0 +1,16 @@
+# Ensure all text files use LF in the repo, and are normalized on checkout
+* text=auto
+
+# Explicitly declare file types you want to treat as text
+*.js     text
+*.jsx    text
+*.ts     text
+*.vue    text
+*.json   text
+*.html   text
+*.css    text
+
+# Prevent CRLF conversion for binary files
+*.png    binary
+*.jpg    binary
+*.ico    binary
