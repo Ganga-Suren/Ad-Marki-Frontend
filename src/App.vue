@@ -9,9 +9,9 @@
 
     <nav class="navbar">
       <ul>
-        <li><a href="#about" class="link">About Us</a></li>
-        <li><a href="#offer">What We Offer</a></li>
-        <li><a href="#form">Get Started</a></li>
+        <li><a href="#about" class="nav-link">About Us</a></li>
+        <li><a href="#offer" class="nav-link">What We Offer</a></li>
+        <li><a href="#form" class="nav-link">Get Started</a></li>
       </ul>
     </nav>
 

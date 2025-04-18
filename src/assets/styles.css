@@ -27,7 +27,6 @@ body {
 .container {
   max-width: 1024px;
   margin: 0 auto;
-  padding: 2rem 0;
 }
 
 /* Fixed Header */
@@ -73,18 +72,6 @@ body {
   height: 100%;
   align-items: center;
 }
-.navbar a,
-.navbar nav-link {
-  color: var(--brand-blue);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease, border-bottom 0.2s ease;
-  cursor: pointer;
-}
-.navbar nav-link:hover {
-  color: var(--brand-orange);
-  border-bottom: 2px solid var(--brand-orange);
-}
 
 /* Scrollable content placeholder */
 .main-content {
@@ -111,6 +98,11 @@ body {
 
 #about.container {
   padding: 0rem;
+}
+#form.container,
+#offer.container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .offer-grid {
@@ -188,22 +180,6 @@ body {
   }
 }
 
-/* Buttons */
-.btn {
-  display: inline-block;
-  background: var(--brand-orange);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  margin: 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 0.25rem;
-}
-.btn:hover {
-  background: #e66f00;
-}
-
 /* Form styling */
 .form {
   background: white;
@@ -225,10 +201,6 @@ body {
   width: calc(100% - 140px);
   vertical-align: middle;
   padding: 0.5rem;
-}
-#form.container {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
 }
 
 /* User Form */
@@ -282,7 +254,7 @@ body {
 /* new button styling */
 .user-form__btn {
   display: block;
-  width: calc(100% - 120px);
+  width: calc(100% - 127px);
   margin-left: 120px;
   padding: 0.75rem;
   font-size: 1rem;
@@ -292,6 +264,10 @@ body {
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
+}
+.user-form__btn:hover {
+  background: #ff7a00;
+  box-shadow: 0 4px 8px rgba(255, 122, 0, 0.3);
 }
 
 /* Fixed Footer */
@@ -306,4 +282,25 @@ footer {
   text-align: center;
   line-height: var(--footer-height);
   z-index: 1000;
+}
+
+/* Base, visited & link states all share the same rules */
+.navbar .nav-link,
+.navbar .nav-link:link,
+.navbar .nav-link:visited {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  color: var(--brand-blue) !important;
+  text-decoration: none !important; /* remove underline */
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Hover & focus use your orange accent */
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: var(--brand-orange) !important;
+  background-color: rgba(255, 122, 0, 0.1);
+  text-decoration: none !important; /* double‑ensure no underline */
 }
