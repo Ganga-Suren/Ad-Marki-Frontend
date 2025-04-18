@@ -66,6 +66,7 @@
         <option value="all">All</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
+        required
       </select>
     </div>
 
@@ -78,6 +79,7 @@
         type="text"
         class="user-form__input"
         placeholder="City, Country"
+        required
       />
     </div>
 
@@ -91,6 +93,7 @@
         class="user-form__input"
         placeholder="e.g. 50"
         min="1"
+        required
       />
     </div>
     <div class="form-row">
@@ -121,40 +124,45 @@
         {{ loading ? 'Sending…' : 'Create Campaign' }}
       </button>
     </div>
-    <p v-if="error" class="text-red-600" style="margin-top: 1rem">{{ error }}</p>
-    <p v-if="successMsg" class="text-green-600" style="margin-top: 1rem">{{ successMsg }}</p>
   </form>
 </template>
 
 <script>
   import api from '../api.js'
+  import { useToast } from 'vue-toastification'
 
   export default {
     name: 'UserForm',
     data() {
+      const defaults = {
+        campaignName: '',
+        adText: '',
+        imageUrl: '',
+        minAge: 18,
+        maxAge: 65,
+        gender: 'all',
+        location: '',
+        dailyBudget: null,
+        startDate: '',
+        endDate: '',
+      }
+
       return {
-        form: {
-          campaignName: '',
-          adText: '',
-          imageUrl: '',
-          minAge: 18,
-          maxAge: 65,
-          gender: 'All',
-          location: '',
-          dailyBudget: null,
-          startDate: '',
-          endDate: '',
-        },
+        form: { ...defaults },
+        initialForm: defaults,
         loading: false,
-        error: null,
-        successMsg: null,
       }
     },
+    setup() {
+      const toast = useToast()
+      return { toast }
+    },
     methods: {
+      resetForm() {
+        Object.assign(this.form, this.initialForm)
+      },
       async handleSubmit() {
-        this.error = null
-        this.successMsg = null
-        this.loading = true
+        console.log('handleSubmit fired')
 
         // Build payload matching FastAPI schema:
         const payload = {
@@ -164,25 +172,29 @@
           min_age: this.form.minAge,
           max_age: this.form.maxAge,
           gender: this.form.gender.toLowerCase(),
-          location: this.form.location,
+          location: this.form.location.trim(),
           daily_budget: this.form.dailyBudget,
           start_date: this.form.startDate,
           end_date: this.form.endDate,
         }
-        try {
-          const resp = await api.post('/create-campaign', payload)
-          // Success! resp.data should contain your mock campaign_id, etc.
-          this.successMsg = `Campaign created: ${resp.data.campaign_id}`
-        } catch (err) {
-          this.error = err.response?.data?.detail || err.message
-        } finally {
-          this.loading = false
-        }
+
+        this.loading = true
+
+        await api
+          .post('/create-campaign', payload)
+          .then(() => {
+            // SUCCESS callback — only runs on HTTP 2xx
+            this.toast.success('Campaign Created Successfully!')
+            this.resetForm()
+          })
+          .catch(() => {
+            // ERROR callback — only runs on non-2xx
+            this.toast.error('Failed to create campaign')
+          })
+          .finally(() => {
+            this.loading = false
+          })
       },
     },
   }
 </script>
-
-<style scoped>
-  /* Add your styles here */
-</style>
