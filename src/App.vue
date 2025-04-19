@@ -1,19 +1,15 @@
 <template>
   <div>
-    <header class="header">
-      <div class="container">
-        <h1>Welcome to AdMarki</h1>
-        <p>Your Mini Marketing 360: Facebook Ad Builder</p>
-      </div>
+    <header class="site-header">
+      <h1 class="site-title">AdMarki</h1>
+      <nav class="site-nav">
+        <ul class="site-nav__list">
+          <li><a href="#about" class="nav-link">About Us</a></li>
+          <li><a href="#offer" class="nav-link">What We Offer</a></li>
+          <li><a href="#form" class="nav-link">Get Started</a></li>
+        </ul>
+      </nav>
     </header>
-
-    <nav class="navbar">
-      <ul>
-        <li><a href="#about" class="nav-link">About Us</a></li>
-        <li><a href="#offer" class="nav-link">What We Offer</a></li>
-        <li><a href="#form" class="nav-link">Get Started</a></li>
-      </ul>
-    </nav>
 
     <main class="main-content">
       <section id="about" class="container">
