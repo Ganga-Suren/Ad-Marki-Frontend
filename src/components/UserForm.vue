@@ -23,7 +23,7 @@
         placeholder="Write your ad copy"
         rows="3"
         required
-      />
+      ></textarea>
     </div>
 
     <!-- Image URL -->
@@ -61,12 +61,12 @@
 
     <!-- Audience: Gender -->
     <div class="form-row">
-      <label for="gender" class="user-form__label">Gender</label>
-      <select id="gender" v-model="form.gender" class="user-form__input">
+      <label for="gender" class="user-form__label" required>Gender</label>
+      <select id="gender" v-model="form.gender" class="user-form__input" required>
+        <option value="" disabled> Select gender</option>
         <option value="all">All</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
-        required
       </select>
     </div>
 
@@ -140,7 +140,7 @@
         imageUrl: '',
         minAge: 18,
         maxAge: 65,
-        gender: 'all',
+        gender: '',
         location: '',
         dailyBudget: null,
         startDate: '',
@@ -180,20 +180,18 @@
 
         this.loading = true
 
-        await api
-          .post('/create-campaign', payload)
-          .then(() => {
-            // SUCCESS callback — only runs on HTTP 2xx
-            this.toast.success('Campaign Created Successfully!')
-            this.resetForm()
-          })
-          .catch(() => {
-            // ERROR callback — only runs on non-2xx
-            this.toast.error('Failed to create campaign')
-          })
-          .finally(() => {
-            this.loading = false
-          })
+        try {
+        const response = await api.post('/create-campaign', payload)
+        const data = response.data
+        console.log('Campaign created with id:', response.data)
+        this.toast.success(`${data.message} with id: ${data.campaign_id}`)
+        this.resetForm()
+      } catch (err) {
+        console.error('Error creating campaign:', err.message)
+        this.toast.error(`${err.message} - Please try again.`)
+      } finally {
+        this.loading = false
+      }
       },
     },
   }
