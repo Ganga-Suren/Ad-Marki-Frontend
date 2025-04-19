@@ -1,9 +1,18 @@
 <template>
   <div>
     <header class="site-header">
-      <h1 class="site-title">AdMarki</h1>
+      <img
+        src="/image.png"
+        alt="AdMarki logo"
+        class="site-logo"
+      />
       <nav class="site-nav">
-        <ul class="site-nav__list">
+        <button
+          class="mobile-menu-btn"
+          @click="mobileMenuOpen = !mobileMenuOpen"
+          aria-label="Toggle menu"
+        ><EllipsisVerticalIcon class="w-6 h-6 text-white" /></button>
+        <ul :class="['site-nav__list', { open: mobileMenuOpen }]">
           <li><a href="#about" class="nav-link">About Us</a></li>
           <li><a href="#offer" class="nav-link">What We Offer</a></li>
           <li><a href="#form" class="nav-link">Get Started</a></li>
@@ -61,12 +70,19 @@
 
 <script>
   import UserForm from './components/UserForm.vue'
+  import { ref } from 'vue'
+  import { EllipsisVerticalIcon } from '@heroicons/vue/24/outline'
 
   export default {
     name: 'App',
     components: {
       UserForm,
+      EllipsisVerticalIcon,
     },
+    setup() {
+    const mobileMenuOpen = ref(true)
+    return { mobileMenuOpen }
+  },
   }
 </script>
 
