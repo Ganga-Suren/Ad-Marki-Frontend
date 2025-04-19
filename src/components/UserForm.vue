@@ -48,6 +48,7 @@
           class="user-form__input"
           placeholder="Min"
           min="13"
+          required
         />
         <input
           v-model.number="form.maxAge"
@@ -55,6 +56,7 @@
           class="user-form__input"
           placeholder="Max"
           :min="form.minAge"
+          required
         />
       </div>
     </div>
@@ -63,7 +65,7 @@
     <div class="form-row">
       <label for="gender" class="user-form__label" required>Gender</label>
       <select id="gender" v-model="form.gender" class="user-form__input" required>
-        <option value="" disabled> Select gender</option>
+        <option value="" disabled>Select gender</option>
         <option value="all">All</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
@@ -103,6 +105,7 @@
         v-model="form.startDate"
         type="date"
         class="user-form__input"
+        :min="today"
         required
       />
     </div>
@@ -113,7 +116,7 @@
         v-model="form.endDate"
         type="date"
         class="user-form__input"
-        :min="form.startDate"
+        :min="form.startDate || today"
         required
       />
     </div>
@@ -134,12 +137,13 @@
   export default {
     name: 'UserForm',
     data() {
+      const today = new Date().toISOString().split('T')[0]
       const defaults = {
         campaignName: '',
         adText: '',
         imageUrl: '',
-        minAge: 18,
-        maxAge: 65,
+        minAge: null,
+        maxAge: null,
         gender: '',
         location: '',
         dailyBudget: null,
@@ -149,6 +153,7 @@
 
       return {
         form: { ...defaults },
+        today,
         initialForm: defaults,
         loading: false,
       }
@@ -181,17 +186,17 @@
         this.loading = true
 
         try {
-        const response = await api.post('/create-campaign', payload)
-        const data = response.data
-        console.log('Campaign created with id:', response.data)
-        this.toast.success(`${data.message} with id: ${data.campaign_id}`)
-        this.resetForm()
-      } catch (err) {
-        console.error('Error creating campaign:', err.message)
-        this.toast.error(`${err.message} - Please try again.`)
-      } finally {
-        this.loading = false
-      }
+          const response = await api.post('/create-campaign', payload)
+          const data = response.data
+          console.log('Campaign created with id:', response.data)
+          this.toast.success(`${data.message} with id: ${data.campaign_id}`)
+          this.resetForm()
+        } catch (err) {
+          console.error('Error creating campaign:', err.message)
+          this.toast.error(`${err.message} - Please try again.`)
+        } finally {
+          this.loading = false
+        }
       },
     },
   }
