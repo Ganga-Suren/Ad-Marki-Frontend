@@ -2,7 +2,7 @@
   <div>
     <header class="site-header">
       <img
-        src="/image.png"
+        src="/logo.png"
         alt="AdMarki logo"
         class="site-logo"
       />
@@ -80,7 +80,7 @@
       EllipsisVerticalIcon,
     },
     setup() {
-    const mobileMenuOpen = ref(true)
+    const mobileMenuOpen = ref(false)
     return { mobileMenuOpen }
   },
   }
