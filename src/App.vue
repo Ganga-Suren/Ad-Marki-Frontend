@@ -1,17 +1,15 @@
 <template>
   <div>
     <header class="site-header">
-      <img
-        src="/logo.png"
-        alt="AdMarki logo"
-        class="site-logo"
-      />
+      <img src="/hepta-logo.png" alt="AdMarki logo" class="site-logo" />
       <nav class="site-nav">
         <button
           class="mobile-menu-btn"
           @click="mobileMenuOpen = !mobileMenuOpen"
           aria-label="Toggle menu"
-        ><EllipsisVerticalIcon class="w-6 h-6 text-white" /></button>
+        >
+          <EllipsisVerticalIcon class="w-6 h-6 text-white" />
+        </button>
         <ul :class="['site-nav__list', { open: mobileMenuOpen }]">
           <li><a href="#about" class="nav-link">About Us</a></li>
           <li><a href="#offer" class="nav-link">What We Offer</a></li>
@@ -20,17 +18,22 @@
       </nav>
     </header>
 
+    <HeroBanner />
+
     <main class="main-content">
       <section id="about" class="container">
         <div class="offer-block about-block">
-          <span class="block-title">💡About Us</span>
+          <h2 class="section-title">💡About Us</h2>
           <p class="block-desc">
-            AdMarki is a lightweight Facebook Ad builder designed to simplify the process of
-            creating and managing ad campaigns. Whether you're a small business owner or a digital
-            marketer, AdMarki helps you craft visually appealing ads with ease. With an intuitive
-            interface and customizable templates, you can quickly design, preview, and launch your
-            Facebook ads, all in one place. Streamline your ad creation workflow and bring your
-            marketing ideas to life with AdMarki.
+            AdMarki was born from the belief that powerful Facebook advertising shouldn’t require a
+            PhD in marketing or hours of setup. Our intuitive, web based builder walks you through
+            every step from crafting scroll stopping creative to zeroing in on the perfect audience,
+            so you can launch campaigns in minutes, not days. Under the hood we’re crunching data to
+            keep your ads razor targeted and budget efficient, while our live preview and auto save
+            features ensure your vision never gets lost in the workflow. Whether you’re an agency
+            scaling dozens of campaigns or a small business owner testing your first ad, AdMarki
+            blends creativity and analytics into a single, seamless experience so you spend less
+            time wrestling with tools and more time growing your brand.
           </p>
         </div>
       </section>
@@ -70,6 +73,7 @@
 
 <script>
   import UserForm from './components/UserForm.vue'
+  import HeroBanner from '@/components/HeroBanner.vue'
   import { ref } from 'vue'
   import { EllipsisVerticalIcon } from '@heroicons/vue/24/outline'
 
@@ -77,12 +81,13 @@
     name: 'App',
     components: {
       UserForm,
+      HeroBanner,
       EllipsisVerticalIcon,
     },
     setup() {
-    const mobileMenuOpen = ref(false)
-    return { mobileMenuOpen }
-  },
+      const mobileMenuOpen = ref(false)
+      return { mobileMenuOpen }
+    },
   }
 </script>
 

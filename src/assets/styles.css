@@ -2,7 +2,8 @@
 :root {
   --brand-light-orange: #ff842b;
   --brand-dark-orange: #ea6505;
-  --font-sans: 'Poppins', sans-serif;
+  --brand-blue: #040677;
+  --font-sans: 'Comfortaa', sans-serif;
 
   --header-height: 100px;
   --nav-height: 0;
@@ -55,20 +56,20 @@ body {
 
 .site-logo {
   /* Control its height so it fits within your header */
-  height: 6rem;      /* adjust up/down as needed */
-  width: auto;         /* maintain aspect ratio */
-  margin-left: 1.5rem; /* spacing from left edge */
-  margin-right: auto;/* spacing between logo & nav */
-  cursor: pointer;     /* optional – makes it feel clickable */
+  height: 6rem;
+  width: auto;
+  margin-left: 2rem;
+  margin-right: auto;
+  cursor: pointer;
 }
 
 /* 1) Desktop: always show your nav list */
 .site-nav__list {
-  display: flex;        /* lay out items in a row */
-  gap: 1.5rem;          /* spacing between links */
-  list-style: none;     /* remove bullets */
-  margin: 0;            /* reset default UL margins */
-  padding: 0;           /* reset default UL padding */
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 /* Hide the mobile toggle by default */
@@ -93,20 +94,20 @@ body {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 100%;   /* right below your fixed header */
+    top: 100%; /* right below your fixed header */
     right: 0;
     background: none;
     width: 200px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
   .mobile-menu-btn {
     background: none;
     border: none;
     cursor: pointer;
-    display: block;          /* make it show by default */
+    display: block; /* make it show by default */
     padding: 0.5rem;
   }
-  
+
   /* size & color the inline SVG inside the button */
   .mobile-menu-btn svg {
     width: 1.5rem;
@@ -122,13 +123,12 @@ body {
 
   .site-nav__list.open li {
     border-bottom: 1px solid rgba(246, 12, 12, 0.2);
-    
   }
   .site-nav__list.open li:last-child {
     border-bottom: none;
   }
   .site-nav__list.open .nav-link {
-    font-family: 'Quicksand', sans-serif;
+    font-family: var(--font-sans);
     display: block;
     padding: 0.75rem 1rem;
     color: whitesmoke;
@@ -138,14 +138,32 @@ body {
 
 /* Nav link styling */
 .site-nav .nav-link {
-  font-family: 'Quicksand', sans-serif;
+  font-family: var(--font-sans);
   color: white;
   text-decoration: none;
   font-weight: 500;
   padding: 0.5rem;
   transition: color 0.2s ease, background-color 0.2s ease;
   border-bottom: 2px solid transparent;
+  position: relative;
+  display: inline-block;
 }
+.site-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.5s ease;
+  transform-origin: left center;
+}
+.site-nav .nav-link:hover::after,
+.site-nav .nav-link:focus::after {
+  width: 50%;
+}
+
 .site-nav .nav-link:hover,
 .site-nav .nav-link:focus {
   color: var(--brand-orange);
@@ -154,13 +172,14 @@ body {
 
 /* Scrollable content placeholder */
 .main-content {
-  margin-top: calc(var(--header-height) + 1rem);
+  margin-top: 2rem;
 }
 
 /* Section titles */
 .section-title {
-  color: var(--brand-light-orange);
+  color: var(--brand-blue);
   font-size: 2rem;
+  font-family: var(--font-sans);
   text-align: center;
   margin-bottom: 1rem;
 }
@@ -236,14 +255,16 @@ body {
   display: block;
   margin: 0.5rem 0 1rem;
   font-size: 1.25rem;
-  color: var(--brand-light-orange);
+  font-family: var(--font-sans);
+  color: var(--brand-blue);
   font-weight: 600;
 }
 
 /* Description text */
 .block-desc {
-  color: #555;
+  color: var(--brand-light-orange);
   font-size: 0.95rem;
+  font-family: var(--font-sans);
   line-height: 1.5;
 }
 
@@ -270,6 +291,7 @@ body {
   vertical-align: middle;
   margin-right: 0.5rem;
   font-weight: 500;
+  font-family: var(--font-sans);
 }
 .form input {
   display: inline-block;
@@ -299,7 +321,8 @@ body {
 .user-form__label {
   flex: 0 0 120px;
   font-weight: 600;
-  color: #f3b182;
+  font-family: var(--font-sans);
+  color: var(--brand-blue);
   position: relative;
   cursor: text;
   transition: color 0.3s;
@@ -315,6 +338,7 @@ body {
 .user-form__input {
   flex: 1;
   padding: 0.5rem 0.75rem;
+  font-family: var(--font-sans);
   border: 2px solid #ddd;
   border-radius: 0.25rem;
   transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
@@ -325,6 +349,10 @@ body {
   box-shadow: 0 0 8px rgba(255, 122, 0, 0.4);
   background-color: #fff7f0;
 }
+.user-form .form-row:focus-within .user-form__label {
+  color: var(--brand-light-orange);
+  transition: color 0.2s ease;
+}
 
 /* new button styling */
 .user-form__btn {
@@ -334,25 +362,25 @@ body {
   padding: 0.75rem;
   font-size: 1rem;
   font-weight: 600;
-  background: var(--brand-dark-orange);
+  background: var(--brand-light-orange);
   color: #fff;
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
 }
 .user-form__btn:hover {
-  background: #ff7a00;
+  background: var(--brand-dark-orange);
   box-shadow: 0 4px 8px rgba(255, 122, 0, 0.3);
 }
 
 /* Fixed Footer */
 footer {
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
   left: 0;
   right: 0;
   height: var(--footer-height);
-  background: var(--brand-dark-orange);
+  background: rgb(54, 53, 53);
   color: white;
   text-align: center;
   line-height: var(--footer-height);
