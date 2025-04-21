@@ -11,7 +11,7 @@
           <EllipsisVerticalIcon class="w-6 h-6 text-white" />
         </button>
         <ul :class="['site-nav__list', { open: mobileMenuOpen }]">
-          <li><a href="#about" class="nav-link">About Us</a></li>
+          <li><a href="#about" class="nav-link">Our Story</a></li>
           <li><a href="#offer" class="nav-link">What We Offer</a></li>
           <li><a href="#form" class="nav-link">Get Started</a></li>
         </ul>
@@ -23,7 +23,7 @@
     <main class="main-content">
       <section id="about" class="container">
         <div class="offer-block about-block">
-          <h2 class="section-title">💡About Us</h2>
+          <h2 class="section-title">🌱Our Story</h2>
           <p class="block-desc">
             AdMarki was born from the belief that powerful Facebook advertising shouldn’t require a
             PhD in marketing or hours of setup. Our intuitive, web based builder walks you through
@@ -39,7 +39,7 @@
       </section>
 
       <section id="offer" class="container">
-        <h2 class="section-title">What WeOffer</h2>
+        <h2 class="section-title">💡What We Offer</h2>
         <div class="offer-grid">
           <div class="offer-block">
             <div class="block-icon">🚀</div>
@@ -62,18 +62,21 @@
       </section>
 
       <section id="form" class="container">
-        <h2 class="section-title">Get Started</h2>
+        <h2 class="section-title">✨Get Started</h2>
         <UserForm class="form" />
       </section>
     </main>
 
     <footer>&copy; 2025 AdMarki — All rights reserved</footer>
+
+    <ScrollToTop />
   </div>
 </template>
 
 <script>
   import UserForm from './components/UserForm.vue'
   import HeroBanner from '@/components/HeroBanner.vue'
+  import ScrollToTop from '@/components/ScrollToTop.vue'
   import { ref } from 'vue'
   import { EllipsisVerticalIcon } from '@heroicons/vue/24/outline'
 
@@ -82,6 +85,7 @@
     components: {
       UserForm,
       HeroBanner,
+      ScrollToTop,
       EllipsisVerticalIcon,
     },
     setup() {

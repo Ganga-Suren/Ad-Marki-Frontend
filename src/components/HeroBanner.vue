@@ -6,6 +6,7 @@
           AdMarki is a lightweight Facebook Ad builder designed to get your campaigns up and running
           in minutes. We blend creativity with data for maximum ROI.
         </p>
+        <a href="#form" class="hero-banner__button">Get Started</a>
       </div>
       <div class="hero-banner__image">
         <img src="/hero-banner.png" alt="AdMarki Hero Banner" class="hero-banner__image" />
@@ -14,44 +15,65 @@
   </section>
 </template>
 
-<script setup>
-  // no JS needed here for now
-</script>
+<script setup></script>
 
 <style scoped>
+  .hero-banner__button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    background-color: #ffffff;
+    color: black;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-weight: lighter;
+    font-size: small;
+    transition: background-color 0.3s ease;
+  }
+
   .hero-banner {
-    background: var(--brand-light-orange);
+    width: 100%;
     margin-top: calc(-1 * var(--header-height));
     padding-top: calc(var(--header-height) + 2rem);
     padding-bottom: 3rem;
-    text-align: center;
+    text-align: left;
+    background: var(--brand-light-orange);
   }
 
-  /* inner box to constrain width like .container */
   .hero-banner__inner {
     max-width: var(--site-max-width);
     margin: 0 auto;
-    padding: 0 var(--site-gutter);
+    margin-top: -3rem;
+    margin-bottom: 2rem;
+    padding: calc(var(--header-height) + 2rem) var(--site-gutter) 3rem;
     display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
     align-items: center;
     justify-content: space-between;
   }
   .hero-banner__text {
-    font-size: 1.125rem;
+    font-size: 28px;
     font-family: var(--font-sans);
     color: #ffffff;
     max-width: 700px;
     margin: 0.5rem auto;
     line-height: 1.6;
+    flex: 1 1 320px;
+    min-width: 280px;
+  }
+  .hero-banner__image {
+    flex: 1 1 280px;
+    text-align: center;
   }
   .hero-banner__image img {
-    max-width: 300px;
+    width: 100%;
+    max-width: 400px;
     height: auto;
     border-radius: 0.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
-  /* slide‑down keyframe */
   @keyframes slideDown {
     from {
       opacity: 0;
@@ -63,8 +85,27 @@
     }
   }
 
-  /* apply the animation */
   .animate-slide-down {
     animation: slideDown 0.8s ease-out both;
+  }
+
+  @media (max-width: 768px) {
+    .hero-banner {
+      padding-top: calc(var(--header-height) + 1rem);
+      padding-bottom: 1.5rem;
+    }
+
+    .hero-banner__inner {
+      gap: 1rem;
+    }
+
+    .hero-banner__text {
+      text-align: left;
+      margin-top: 0;
+    }
+
+    .hero-banner__image {
+      margin-top: 0.75rem;
+    }
   }
 </style>
