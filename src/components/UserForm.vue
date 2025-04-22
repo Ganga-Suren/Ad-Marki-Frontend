@@ -51,7 +51,7 @@
           type="number"
           class="user-form__input"
           placeholder="Min"
-          min="13"
+          min="18"
           required
         />
         <input
@@ -59,6 +59,7 @@
           type="number"
           class="user-form__input"
           placeholder="Max"
+          max="100"
           :min="form.minAge"
           required
         />
