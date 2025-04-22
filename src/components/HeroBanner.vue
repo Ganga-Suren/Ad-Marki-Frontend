@@ -3,8 +3,8 @@
     <div class="hero-banner__inner animate-slide-down">
       <div class="hero-banner__text">
         <p>
-          AdMarki is a lightweight Facebook Ad builder designed to get your campaigns up and running
-          in minutes. We blend creativity with data for maximum ROI.
+          Heptaloop is a lightweight Facebook Ad builder designed to get your campaigns up and
+          running in minutes. We blend creativity with data for maximum ROI.
         </p>
         <a href="#form" class="hero-banner__button">Get Started</a>
       </div>

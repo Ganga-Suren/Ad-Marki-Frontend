@@ -125,4 +125,4 @@ Ad-Marki-Frontend/
 ## 👤 Authors
 
 - [Ganga Surendra Basva](https://github.com/Ganga-Suren)
-- [Friend’s Name](https://github.com/KranthiPedamajji)
+- [Kranthi Pedamajji](https://github.com/KranthiPedamajji)

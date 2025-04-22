@@ -1,7 +1,7 @@
 <template>
   <div>
     <header class="site-header">
-      <img src="/hepta-logo.png" alt="AdMarki logo" class="site-logo" />
+      <img src="/hepta-logo.png" alt="Heptaloop logo" class="site-logo" />
       <nav class="site-nav">
         <button
           class="mobile-menu-btn"
@@ -25,13 +25,13 @@
         <div class="offer-block about-block">
           <h2 class="section-title">🌱Our Story</h2>
           <p class="block-desc">
-            AdMarki was born from the belief that powerful Facebook advertising shouldn’t require a
-            PhD in marketing or hours of setup. Our intuitive, web based builder walks you through
+            Heptaloop was born from the belief that powerful Facebook advertising shouldn’t require
+            a PhD in marketing or hours of setup. Our intuitive, web based builder walks you through
             every step from crafting scroll stopping creative to zeroing in on the perfect audience,
             so you can launch campaigns in minutes, not days. Under the hood we’re crunching data to
             keep your ads razor targeted and budget efficient, while our live preview and auto save
             features ensure your vision never gets lost in the workflow. Whether you’re an agency
-            scaling dozens of campaigns or a small business owner testing your first ad, AdMarki
+            scaling dozens of campaigns or a small business owner testing your first ad, Heptaloop
             blends creativity and analytics into a single, seamless experience so you spend less
             time wrestling with tools and more time growing your brand.
           </p>
@@ -67,7 +67,7 @@
       </section>
     </main>
 
-    <footer>&copy; 2025 AdMarki — All rights reserved</footer>
+    <footer>&copy; 2025 Heptaloop — All rights reserved</footer>
 
     <ScrollToTop />
   </div>

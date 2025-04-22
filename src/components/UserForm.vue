@@ -35,6 +35,10 @@
         type="url"
         class="user-form__input"
         placeholder="https://example.com/image.jpg"
+        pattern="https?://.+"
+        required
+        @input="clearCustomValidity"
+        @invalid="setCustomValidity"
       />
     </div>
 
@@ -116,7 +120,7 @@
         v-model="form.endDate"
         type="date"
         class="user-form__input"
-        :min="form.startDate || today"
+        :min="minEndDate"
         required
       />
     </div>
@@ -154,10 +158,20 @@
       return {
         form: { ...defaults },
         today,
+        urlError: '',
         initialForm: defaults,
         loading: false,
       }
     },
+    computed: {
+      minEndDate() {
+        if (!this.form.startDate) return ''
+        const d = new Date(this.form.startDate)
+        d.setDate(d.getDate() + 1)
+        return d.toISOString().slice(0, 10)
+      },
+    },
+
     setup() {
       const toast = useToast()
       return { toast }
@@ -165,6 +179,12 @@
     methods: {
       resetForm() {
         Object.assign(this.form, this.initialForm)
+      },
+      setCustomValidity(event) {
+        event.target.setCustomValidity('Please enter a valid HTTP or HTTPS URL.')
+      },
+      clearCustomValidity(event) {
+        event.target.setCustomValidity('')
       },
       async handleSubmit() {
         console.log('handleSubmit fired')
@@ -193,7 +213,7 @@
           this.resetForm()
         } catch (err) {
           console.error('Error creating campaign:', err.message)
-          this.toast.error(`${err.message} - Please try again.`)
+          this.toast.error(`Sorry campaign not created - Please try again.`)
         } finally {
           this.loading = false
         }
